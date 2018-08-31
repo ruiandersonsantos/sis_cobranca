@@ -11,13 +11,10 @@
  */
 class SystemGroup extends TRecord
 {
-    const TABLENAME = 'system_group';
-    const PRIMARYKEY= 'id';
-    const IDPOLICY =  'max'; // {max, serial}
+    const TABLENAME  = 'system_group';
+    const PRIMARYKEY = 'id';
+    const IDPOLICY   = 'max'; // {max, serial}
     
-    
-    private $system_programs = array();
-
     /**
      * Constructor method
      */
@@ -28,9 +25,8 @@ class SystemGroup extends TRecord
     }
 
     /**
-     * Method addSystem_program
-     * Add a System_program to the System_group
-     * @param $object Instance of System_program
+     * Add a SystemProgram to the SystemGroup
+     * @param $object Instance of SystemProgram
      */
     public function addSystemProgram(SystemProgram $systemprogram)
     {
@@ -41,9 +37,8 @@ class SystemGroup extends TRecord
     }
     
     /**
-     * Method getSystem_programs
-     * Return the System_group' System_program's
-     * @return Collection of System_program
+     * Return the SystemProgram's
+     * @return Collection of SystemProgram
      */
     public function getSystemPrograms()
     {
@@ -70,7 +65,7 @@ class SystemGroup extends TRecord
      */
     public function clearParts()
     {
-        // delete the related System_groupSystem_program objects
+        // delete the related objects
         SystemGroupProgram::where('system_group_id', '=', $this->id)->delete();
     }
     

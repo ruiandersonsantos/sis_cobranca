@@ -1,6 +1,6 @@
 <?php
 /**
- * SystemUsers
+ * SystemUser
  *
  * @version    1.0
  * @package    model
@@ -230,12 +230,10 @@ class SystemUsers extends TRecord
     }
     
     /**
-     * Authenticate the user
+     * Validate user login
      * @param $login String with user login
-     * @param $password String with user password
-     * @returns TRUE if the password matches, otherwise throw Exception
      */
-    public static function authenticate($login, $password)
+    public static function validate($login)
     {
         $user = self::newFromLogin($login);
         
@@ -245,35 +243,48 @@ class SystemUsers extends TRecord
             {
                 throw new Exception(_t('Inactive user'));
             }
-            else if (isset( $user->password ) AND ($user->password == md5($password)) )
-            {
-                return $user;
-            }
-            else
-            {
-                throw new Exception(_t('Wrong password'));
-            }
         }
         else
         {
             throw new Exception(_t('User not found'));
         }
+        
+        return $user;
     }
     
     /**
-     * Returns a SystemUsers object based on its login
+     * Authenticate the user
+     * @param $login String with user login
+     * @param $password String with user password
+     * @returns TRUE if the password matches, otherwise throw Exception
+     */
+    public static function authenticate($login, $password)
+    {
+        $user = self::newFromLogin($login);
+        if ($user->password !== md5($password))
+        {
+            throw new Exception(_t('Wrong password'));
+        }
+        
+        return $user;
+    }
+    
+    /**
+     * Returns a SystemUser object based on its login
      * @param $login String with user login
      */
     static public function newFromLogin($login)
     {
-        $repos = new TRepository('SystemUsers');
-        $criteria = new TCriteria;
-        $criteria->add(new TFilter('login', '=', $login));
-        $objects = $repos->load($criteria);
-        if (isset($objects[0]))
-        {
-            return $objects[0];
-        }
+        return SystemUsers::where('login', '=', $login)->first();
+    }
+    
+    /**
+     * Returns a SystemUser object based on its e-mail
+     * @param $email String with user email
+     */
+    static public function newFromEmail($email)
+    {
+        return SystemUsers::where('email', '=', $email)->first();
     }
     
     /**

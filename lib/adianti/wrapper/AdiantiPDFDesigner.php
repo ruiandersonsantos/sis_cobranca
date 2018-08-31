@@ -17,6 +17,7 @@ use SimpleXMLIterator;
  */
 class AdiantiPDFDesigner extends FPDF
 {
+    private $current_locale;
     private $elements;
     private $anchors;
     private $orientation;
@@ -464,6 +465,8 @@ class AdiantiPDFDesigner extends FPDF
      */
     public function setLocale()
     {
+        $this->current_locale = setlocale(LC_ALL, 0);
+        
         if (OS == 'WIN')
         {
             setlocale(LC_ALL, 'english');
@@ -480,14 +483,7 @@ class AdiantiPDFDesigner extends FPDF
      */
     public function unsetLocale()
     {
-        if (OS == 'WIN')
-        {
-            setlocale(LC_ALL, 'english');
-        }
-        else
-        {
-            setlocale(LC_ALL, 'pt_BR');
-        }
+        setlocale(LC_ALL, $this->current_locale);
     }
 
     /**

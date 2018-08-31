@@ -41,7 +41,7 @@ if (isset($_GET['file']) AND TSession::getValue('logged') )
         header("Pragma: public");
         header("Expires: 0"); // set expiration time
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-        header("Content-type: " . $content_type_list[$extension] );
+        header("Content-type: " . $content_type_list[strtolower($extension)] );
         header("Content-Length: {$filesize}");
         header("Content-disposition: inline; filename=\"{$basename}\"");
         header("Content-Transfer-Encoding: binary");

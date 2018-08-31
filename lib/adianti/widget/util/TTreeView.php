@@ -118,12 +118,13 @@ class TTreeView extends TElement
                         $element->{'id'} = $this->{'id'} . '_' . md5($key);
                     }
                     $span->{'key'} = $key;
-                    $element->add($span);
                     
                     if (is_callable($this->callback))
                     {
-                        call_user_func($this->callback, $span);
+                        $span = call_user_func($this->callback, $span);
                     }
+
+                    $element->add($span);
                     
                     parent::add($element);
                 }
@@ -173,12 +174,13 @@ class TTreeView extends TElement
                         $element->{'id'} = $this->{'id'} . '_' . md5($key);
                     }
                     $span->{'key'} = $key;
-                    $element->add($span);
                     
                     if (is_callable($this->callback))
                     {
-                        call_user_func($this->callback, $span);
+                        $span = call_user_func($this->callback, $span);
                     }
+
+                    $element->add($span);
                 }
                 else if (is_array($option))
                 {
@@ -188,6 +190,11 @@ class TTreeView extends TElement
                     $span->add($key);
                     $element->add($span);
                     $element->add($this->fromOptions($option));
+                }
+                else if (is_object($option))
+                {
+                    $element = new TElement('li');
+                    $element->add($option);
                 }
                 $ul->add($element);
             }

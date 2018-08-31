@@ -4503,7 +4503,8 @@ section.content {
 .table tbody tr td, .table tbody tr th {
   padding: 10px;
   border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee; }
+  //border-bottom: 1px solid #eee;
+  }
 
 .table tbody tr.primary td, .table tbody tr.primary th {
   background-color: #1f91f3;

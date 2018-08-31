@@ -65,7 +65,7 @@ class SystemPreferenceForm extends TStandardForm
         $btn->class = 'btn btn-sm btn-primary';
         
         $container = new TVBox;
-        $container->{'style'} = 'width: 90%; max-width: 1200px';
+        $container->{'style'} = 'width: 90%;';
         $container->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
         $container->add($this->form);
         parent::add($container);

@@ -68,6 +68,7 @@ class TTableWriterRTF implements ITableWriter
         {
             foreach ($this->widths as $key => $width)
             {
+                //echo "($width / $total_width) * $page_width <br>";
                 $this->widths[$key] = ($width / $total_width) * $page_width;
             }
         }
@@ -91,6 +92,60 @@ class TTableWriterRTF implements ITableWriter
     public function getNativeWriter()
     {
         return $this->rtf;
+    }
+    
+    /**
+     * Set Header callback
+     */
+    public function setHeaderCallback( $callback )
+    {
+        $container = $this->rtf->addHeader();
+        $table = $container->addTable();
+        
+        foreach ($this->widths as $columnwidth)
+        {
+            $table->addColumn($columnwidth);
+        }
+        
+        $aux = $this->table;
+        $this->table = $table;
+        
+        $this->rowcounter = 0;
+        $this->colcounter = 1;
+        
+        call_user_func($callback, $this);
+        
+        $this->table = $aux;
+        
+        $this->rowcounter = 0;
+        $this->colcounter = 1;
+    }
+    
+    /**
+     * Set Footer callback
+     */
+    public function setFooterCallback( $callback )
+    {
+        $container = $this->rtf->addFooter();
+        $table = $container->addTable();
+        
+        foreach ($this->widths as $columnwidth)
+        {
+            $table->addColumn($columnwidth);
+        }
+        
+        $aux = $this->table;
+        $this->table = $table;
+        
+        $this->rowcounter = 0;
+        $this->colcounter = 1;
+        
+        call_user_func($callback, $this);
+        
+        $this->table = $aux;
+        
+        $this->rowcounter = 0;
+        $this->colcounter = 1;
     }
     
     /**

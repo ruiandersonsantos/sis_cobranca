@@ -98,6 +98,15 @@ class TSelect extends TField implements AdiantiWidgetInterface
     }
     
     /**
+     * Returns the size
+     * @return array(width, height)
+     */
+    public function getSize()
+    {
+        return array( $this->size, $this->height );
+    }
+    
+    /**
      * Define the field's separator
      * @param $sep A string containing the field's separator
      */

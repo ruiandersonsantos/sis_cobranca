@@ -31,7 +31,10 @@ class WelcomeView extends TPage
         $panel2 = new TPanelGroup('Bem-vindo!');
         $panel2->add($html2);
         
+        $vbox = TVBox::pack($panel1, $panel2);
+        $vbox->style = 'display:block; width: 90%';
+        
         // add the template to the page
-        parent::add( TVBox::pack($panel1, $panel2) );
+        parent::add( $vbox );
     }
 }

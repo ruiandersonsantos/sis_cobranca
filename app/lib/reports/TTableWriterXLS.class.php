@@ -20,6 +20,7 @@ class TTableWriterXLS implements ITableWriter
     private $mapedColors;
     private $conversion;
     private $formatBuffer;
+    private $footerCallback;
     
     /**
      * Constructor method
@@ -47,6 +48,22 @@ class TTableWriterXLS implements ITableWriter
         }
         
         $this->rowcounter = -1;
+    }
+    
+    /**
+     * Set Header callback
+     */
+    public function setHeaderCallback( $callback )
+    {
+        call_user_func($callback, $this);
+    }
+    
+    /**
+     * Set Footer callback
+     */
+    public function setFooterCallback( $callback )
+    {
+        $this->footerCallback = $callback;
     }
     
     /**
@@ -248,6 +265,11 @@ class TTableWriterXLS implements ITableWriter
      */
     public function save($filename)
     {
+        if (is_callable($this->footerCallback))
+        {
+            call_user_func($this->footerCallback, $this);
+        }
+        
         if ( (file_exists($filename) AND !is_writable($filename)) OR (!is_writable(dirname($filename))) )
         {
             throw new Exception(_t('Permission denied') . ': '. $filename);

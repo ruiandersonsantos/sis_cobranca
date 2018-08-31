@@ -50,7 +50,7 @@ class TMultiSearch extends TSelect implements AdiantiWidgetInterface
         $this->id   = 'tmultisearch_'.mt_rand(1000000000, 1999999999);
 
         $this->height = 100;
-        $this->minLength = 5;
+        $this->minLength = 3;
         $this->maxSize = 0;
         $this->allowClear = TRUE;
         $this->allowSearch = TRUE;

@@ -163,7 +163,19 @@ class TDBMultiSearch extends TMultiSearch
                     if ($value)
                     {
                         $model = $this->model;
-                        $object = $model::find( $value );
+                        
+                        $pk = constant("{$model}::PRIMARYKEY");
+                        
+                        if ($pk === $this->key) // key is the primary key (default)
+                        {
+                            // use find because it uses cache
+                            $object = $model::find( $value );
+                        }
+                        else // key is an alternative key (uses where->first)
+                        {
+                            $object = $model::where( $this->key, '=', $value )->first();
+                        }
+                        
                         if ($object)
                         {
                             $description = $object->render($this->mask);
@@ -201,7 +213,18 @@ class TDBMultiSearch extends TMultiSearch
                         if ($value)
                         {
                             $model = $this->model;
-                            $object = $model::find( $value );
+                            $pk = constant("{$model}::PRIMARYKEY");
+                            
+                            if ($pk === $this->key) // key is the primary key (default)
+                            {
+                                // use find because it uses cache
+                                $object = $model::find( $value );
+                            }
+                            else // key is an alternative key (uses where->first)
+                            {
+                                $object = $model::where( $this->key, '=', $value )->first();
+                            }
+                            
                             if ($object)
                             {
                                 $description = $object->render($this->mask);

@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
     
-        <title>CSP</title>
+        <title>COB</title>
         
         {LIBRARIES}
         {HEAD}
@@ -17,9 +17,9 @@
         <link href="app/templates/{template}/css/themes/all-themes.css" rel="stylesheet" />
         
         <style>
-        .navbar
+        html
         {
-            position: relative;
+            height: unset;
         }
         </style>
     </head>
@@ -33,7 +33,8 @@
             
         </div>
         <div style="text-align:center">
-            <a href="index.php?class=PublicView">[public view]</a><br>
+            <!--[CREATE-ACCOUNT]--> <a href="index.php?class=SystemRegistrationForm">[_t{Create account}]</a> <!--[/CREATE-ACCOUNT]-->
+            <!--[RESET-PASSWORD]--> <a href="index.php?class=SystemRequestPasswordResetForm">[_t{Reset password}]</a> <br><!--[/RESET-PASSWORD]-->
             
         </div>
         <!-- /#wrapper -->

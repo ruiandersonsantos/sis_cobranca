@@ -98,7 +98,14 @@ abstract class TField
      */
     public function __call($method, $param)
     {
-        return call_user_func_array( array($this->tag, $method), $param );
+        if (method_exists($this->tag, $method))
+        {
+            return call_user_func_array( array($this->tag, $method), $param );
+        }
+        else
+        {
+            throw new Exception(AdiantiCoreTranslator::translate("Method ^1 not found", $method.'()'));
+        }
     }
     
     /**

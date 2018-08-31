@@ -155,6 +155,11 @@ class TMenuParser
         $el_menu = $xml_doc->createElement("menu");
         $menuitem->appendChild($el_menu);
         
+        if (!is_writable($this->path))
+        {
+            throw new Exception(AdiantiCoreTranslator::translate('Permission denied') . ': ' . $this->path);
+        }
+        
         $xml_doc->save($this->path);
     }
     
@@ -183,6 +188,37 @@ class TMenuParser
         }
         
         return false;
+    }
+    
+    /**
+     * Get Modules
+     */
+    public function getModules()
+    {
+        $xml_doc = new DomDocument;
+        $xml_doc->preserveWhiteSpace = false;
+        $xml_doc->formatOutput = true;
+        $xml_doc->load($this->path);
+        $xml_doc->encoding = 'utf-8';
+        
+        $modules = [];
+        
+        foreach ($xml_doc->getElementsByTagName('menuitem') as $node)
+        {
+            $node_label = $node->getAttribute('label');
+            foreach ($node->childNodes as $subnode)
+            {
+                if ($subnode instanceof DOMElement)
+                {
+                    if ($subnode->tagName == 'menu')
+                    {
+                        $modules[ $node_label ] = $node_label;
+                    }
+                }
+            }
+        }
+        
+        return $modules;
     }
     
     /**
@@ -225,7 +261,51 @@ class TMenuParser
                     }
                 }
             }
+            
+            if (!is_writable($this->path))
+            {
+                throw new Exception(AdiantiCoreTranslator::translate('Permission denied') . ': ' . $this->path);
+            }
+            
             $xml_doc->save($this->path);
+        }
+    }
+    
+    /**
+     * Remove page from menu
+     */
+    public function removePage($action)
+    {
+        $xml_doc = new DomDocument;
+        $xml_doc->preserveWhiteSpace = false;
+        $xml_doc->formatOutput = true;
+        $xml_doc->load($this->path);
+        $xml_doc->encoding = 'utf-8';
+        
+        $menuitems = $xml_doc->getElementsByTagName('menuitem');
+        
+        if ($menuitems)
+        {
+            foreach ($menuitems as $node)
+            {
+                foreach ($node->childNodes as $subnode)
+                {
+                    if ($subnode instanceof DOMElement)
+                    {
+                        if ($subnode->tagName == 'action' AND $subnode->nodeValue == $action)
+                        {
+                            $node->parentNode->removeChild($node);
+                            
+                            if (!is_writable($this->path))
+                            {
+                                throw new Exception(AdiantiCoreTranslator::translate('Permission denied') . ': ' . $this->path);
+                            }
+                            $xml_doc->save($this->path);
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
 }

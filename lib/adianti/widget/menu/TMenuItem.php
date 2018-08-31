@@ -77,25 +77,25 @@ class TMenuItem extends TElement
             $action = str_replace('#', '&', $this->action);
             if ((substr($action,0,7) == 'http://') or (substr($action,0,8) == 'https://'))
             {
-                $this->link-> href = $action;
-                $this->link-> target = '_blank';
+                $this->link->{'href'} = $action;
+                $this->link->{'target'} = '_blank';
             }
             else
             {
                 if ($router = AdiantiCoreApplication::getRouter())
                 {
-                    $this->link-> href = $router("class={$action}", true);
+                    $this->link->{'href'} = $router("class={$action}", true);
                 }
                 else
                 {
-                    $this->link-> href = "index.php?class={$action}";
+                    $this->link->{'href'} = "index.php?class={$action}";
                 }
-                $this->link-> generator = 'adianti';
+                $this->link->{'generator'} = 'adianti';
             }
         }
         else
         {
-            $this->link-> href = '#';
+            $this->link->{'href'} = '#';
         }
         
         if (isset($this->image))

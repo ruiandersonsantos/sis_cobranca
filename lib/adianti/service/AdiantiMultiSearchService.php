@@ -52,21 +52,30 @@ class AdiantiMultiSearchService
     
                 $columns = explode(',', $param['column']);
                 
+                if (!isset($param['value']))
+                {
+                    $param['value'] = '';
+                }
+                
                 if ($columns)
                 {
                     $dynamic_criteria = new TCriteria;
-                    foreach ($columns as $column)
+                    
+                    if (empty($param['onlyidsearch']))
                     {
-                        if (stristr(strtolower($operator),'like') !== FALSE)
+                        foreach ($columns as $column)
                         {
-                            $filter = new TFilter($column, $operator, "NOESC:'%{$param['value']}%'");
+                            if (stristr(strtolower($operator),'like') !== FALSE)
+                            {
+                                $filter = new TFilter($column, $operator, "NOESC:'%{$param['value']}%'");
+                            }
+                            else
+                            {
+                                $filter = new TFilter($column, $operator, "NOESC:'{$param['value']}'");
+                            }
+        
+                            $dynamic_criteria->add($filter, TExpression::OR_OPERATOR);
                         }
-                        else
-                        {
-                            $filter = new TFilter($column, $operator, "NOESC:'{$param['value']}'");
-                        }
-    
-                        $dynamic_criteria->add($filter, TExpression::OR_OPERATOR);
                     }
                     
                     if ($param['idsearch'] == '1')

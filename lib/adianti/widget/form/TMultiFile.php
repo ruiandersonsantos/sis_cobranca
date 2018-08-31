@@ -63,6 +63,7 @@ class TMultiFile extends TField implements AdiantiWidgetInterface
     public function setAllowedExtensions($extensions)
     {
         $this->extensions = $extensions;
+        $this->tag->{'accept'} = '.' . implode(',.', $extensions);
     }
     
     /**

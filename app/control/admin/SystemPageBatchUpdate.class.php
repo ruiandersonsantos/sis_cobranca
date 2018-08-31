@@ -28,6 +28,7 @@ class SystemPageBatchUpdate extends TPage
         
         // creates one datagrid
         $this->datagrid = new BootstrapDatagridWrapper(new TQuickGrid);
+        $this->datagrid->width = '100%';
         
         // add the columns
         $this->datagrid->addQuickColumn(_t('Name'),       'name',       'left');

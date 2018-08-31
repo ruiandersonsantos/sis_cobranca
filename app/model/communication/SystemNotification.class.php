@@ -36,7 +36,7 @@ class SystemNotification extends TRecord
     /**
      * Register notification
      */
-    public static function register( $user_to, $subject, $message, $action, $label, $icon = null)
+    public static function register( $user_to, $subject, $message, $action, $label, $icon = null, $date = null)
     {
         if ($action instanceof TAction)
         {
@@ -49,7 +49,7 @@ class SystemNotification extends TRecord
         $object->system_user_to_id = $user_to;
         $object->subject           = $subject;
         $object->message           = $message;
-        $object->dt_message        = date("Y-m-d H:i:s");
+        $object->dt_message        = empty($date) ? date("Y-m-d H:i:s") : $date;
         $object->action_url        = $action;
         $object->action_label      = $label;
         $object->icon              = $icon;

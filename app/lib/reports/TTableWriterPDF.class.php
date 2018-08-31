@@ -49,6 +49,24 @@ class TTableWriterPDF implements ITableWriter
     }
     
     /**
+     * Set Header callback
+     */
+    public function setHeaderCallback( $callback )
+    {
+        // call the first time
+        call_user_func($callback, $this);
+        $this->pdf->setHeaderCallback($callback, $this);
+    }
+    
+    /**
+     * Set Footer callback
+     */
+    public function setFooterCallback( $callback )
+    {
+        $this->pdf->setFooterCallback($callback, $this);
+    }
+    
+    /**
      * Returns the native writer
      */
     public function getNativeWriter()

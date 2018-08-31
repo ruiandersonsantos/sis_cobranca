@@ -16,6 +16,8 @@ use Exception;
  */
 final class TConnection
 {
+    private static $config_path;
+    
     /**
      * Class Constructor
      * There'll be no instances of this class
@@ -42,6 +44,16 @@ final class TConnection
         }
         
         return self::openArray( $dbinfo );
+    }
+    
+    /**
+     * Change database configuration Path
+     * 
+     * @param $path Config path
+     */
+    public static function setConfigPath($path)
+    {
+        self::$config_path = $path;
     }
     
     /**
@@ -102,7 +114,17 @@ final class TConnection
             case 'oracle':
                 $port    = $port ? $port : '1521';
                 $charset = $char ? ";charset={$char}" : '';
-                $conn = new PDO("oci:dbname={$host}:{$port}/{$name}{$charset}", $user, $pass);
+                $tns     = isset($db['tns']) ? $db['tns'] : NULL;
+                
+                if ($tns)
+                {
+                    $conn = new PDO("oci:dbname={$tns}{$charset}", $user, $pass);
+                }
+                else
+                {
+                    $conn = new PDO("oci:dbname={$host}:{$port}/{$name}{$charset}", $user, $pass);
+                }
+                
                 if (isset($db['date']))
                 {
                     $date = $db['date'];
@@ -144,8 +166,24 @@ final class TConnection
                 }
                 break;
             case 'dblib':
-                $port = $port ? $port : '1433';
-                $conn = new PDO("dblib:host={$host},{$port};dbname={$name}", $user, $pass);
+                if ($port)
+                {
+                    $conn = new PDO("dblib:host={$host}:{$port};dbname={$name}", $user, $pass);
+                }
+                else
+                {
+                    $conn = new PDO("dblib:host={$host};dbname={$name}", $user, $pass);
+                }
+                break;
+            case 'sqlsrv':
+                if ($port)
+                {
+                    $conn = new PDO("sqlsrv:Server={$host},{$port};Database={$name}", $user, $pass);
+                }
+                else
+                {
+                    $conn = new PDO("sqlsrv:Server={$host};Database={$name}", $user, $pass);
+                }
                 break;
             default:
                 throw new Exception(AdiantiCoreTranslator::translate('Driver not found') . ': ' . $type);
@@ -170,11 +208,13 @@ final class TConnection
      */
     public static function getDatabaseInfo($database)
     {
+        $path = empty(self::$config_path) ? 'app/config' : self::$config_path;
+        
         // check if the database configuration file exists
-        if (file_exists("app/config/{$database}.ini"))
+        if (file_exists("{$path}/{$database}.ini"))
         {
             // read the INI and retuns an array
-            return parse_ini_file("app/config/{$database}.ini");
+            return parse_ini_file("{$path}/{$database}.ini");
         }
         else
         {

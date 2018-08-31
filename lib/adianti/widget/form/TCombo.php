@@ -199,10 +199,12 @@ class TCombo extends TField implements AdiantiWidgetInterface
      * @param $name field name
      * @param $items array with items
      * @param $startEmpty if the combo will have an empty first item
+     * @param $fire_events If change action will be fired
      */
-    public static function reload($formname, $name, $items, $startEmpty = FALSE)
+    public static function reload($formname, $name, $items, $startEmpty = FALSE, $fire_events = TRUE)
     {
-        $code = "tcombo_clear('{$formname}', '{$name}', false); ";
+        $fire_param = $fire_events ? 'true' : 'false';
+        $code = "tcombo_clear('{$formname}', '{$name}', $fire_param); ";
         if ($startEmpty)
         {
             $code .= "tcombo_add_option('{$formname}', '{$name}', '', ''); ";
@@ -249,8 +251,9 @@ class TCombo extends TField implements AdiantiWidgetInterface
     
     /**
      * Clear the field
-     * @param $form_name Form name
-     * @param $field Field name
+     * @param $form_name   Form name
+     * @param $field       Field name
+     * @param $fire_events If change action will be fired
      */
     public static function clearField($form_name, $field, $fire_events = TRUE)
     {
@@ -377,9 +380,10 @@ class TCombo extends TField implements AdiantiWidgetInterface
         if (!parent::getEditable())
         {
             // make the widget read-only
-            $this->tag->{'onclick'} = "return false;";
-            $this->tag->{'style'}  .= ';pointer-events:none';
-            $this->tag->{'class'}   = 'tcombo_disabled'; // CSS
+            $this->tag->{'onclick'}  = "return false;";
+            $this->tag->{'style'}   .= ';pointer-events:none';
+            $this->tag->{'tabindex'} = '-1';
+            $this->tag->{'class'}    = 'tcombo_disabled'; // CSS
         }
         
         if ($this->searchable)

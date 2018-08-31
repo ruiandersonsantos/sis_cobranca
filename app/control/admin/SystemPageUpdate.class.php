@@ -127,7 +127,7 @@ class SystemPageUpdate extends TWindow
             $file_path   = 'app/'.$first_level.'/' . $param['module_dir'] . '/' . $param['controller'];
             $class_name  = str_replace('.php', '', $param['controller']);
             
-            if ($param['type'] !== 'control')
+            if ($param['type'] !== 'control' AND !empty($param['module_dir']))
             {
                 $path      = str_replace('/'.$param['module_dir'], '', $path);
                 $file_path = str_replace('/'.$param['module_dir'], '', $file_path);

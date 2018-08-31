@@ -25,6 +25,7 @@ class TTime extends TEntry implements AdiantiWidgetInterface
     protected $size;
     protected $value;
     protected $options;
+    protected $replaceOnPost;
     
     /**
      * Class Constructor
@@ -53,14 +54,16 @@ class TTime extends TEntry implements AdiantiWidgetInterface
      * Define the field's mask
      * @param $mask  Mask for the field (dd-mm-yyyy)
      */
-    public function setMask($mask)
+    public function setMask($mask, $replaceOnPost = FALSE)
     {
         $this->mask = $mask;
+        $this->replaceOnPost = $replaceOnPost;
         
         $newmask = $this->mask;
         $newmask = str_replace('hh',   '99',   $newmask);
         $newmask = str_replace('ii',   '99',   $newmask);
-        parent::setMask($newmask);
+        
+        parent::setMask($newmask, $replaceOnPost);
     }
     
     /**

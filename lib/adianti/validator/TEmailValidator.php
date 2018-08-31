@@ -24,11 +24,14 @@ class TEmailValidator extends TFieldValidator
      */
     public function validate($label, $value, $parameters = NULL)
     {
-        $filter = filter_var(trim($value), FILTER_VALIDATE_EMAIL);
-        
-        if ($filter === FALSE)
+        if (!empty($value))
         {
-            throw new Exception(AdiantiCoreTranslator::translate('The field ^1 contains an invalid e-mail', $label));
+            $filter = filter_var(trim($value), FILTER_VALIDATE_EMAIL);
+            
+            if ($filter === FALSE)
+            {
+                throw new Exception(AdiantiCoreTranslator::translate('The field ^1 contains an invalid e-mail', $label));
+            }
         }
     }
 }

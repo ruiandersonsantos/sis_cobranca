@@ -17,9 +17,18 @@ use Exception;
  */
 final class TSqlInsert extends TSqlStatement
 {
-    protected $sql;         // stores the SQL
+    protected $sql;
     private $columnValues;
     private $preparedVars;
+    
+    /**
+     * Constructor method
+     */
+    public function __construct()
+    {
+        $this->columnValues = [];
+        $this->preparedVars = [];
+    }
     
     /**
      * Assign values to the database columns

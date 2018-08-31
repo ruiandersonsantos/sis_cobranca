@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
   <menuitem label="Cadastros Iniciais">
-    <icon>fa:cubes fa-fw </icon>
+    <icon>fa:android fa-fw </icon>
     <menu>
-      <menuitem label="Bancos">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>BancoList#method=onShow</action>
-      </menuitem>
-      <menuitem label="Agência">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>AgenciaList#method=onShow</action>
-      </menuitem>
-      <menuitem label="Contas">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>ContaList#method=onShow</action>
-      </menuitem>
-      <menuitem label="Países">
+      <menuitem label="Paises">
         <icon>fa:circle-o fa-fw </icon>
         <action>PaisList#method=onShow</action>
       </menuitem>
@@ -23,9 +11,21 @@
         <icon>fa:circle-o fa-fw </icon>
         <action>EstadoList#method=onShow</action>
       </menuitem>
+      <menuitem label="Contas">
+        <icon>fa:circle-o fa-fw </icon>
+        <action>ContaList#method=onShow</action>
+      </menuitem>
       <menuitem label="Cidades">
         <icon>fa:circle-o fa-fw </icon>
         <action>CidadeList#method=onShow</action>
+      </menuitem>
+      <menuitem label="Bancos">
+        <icon>fa:circle-o fa-fw </icon>
+        <action>BancoList#method=onShow</action>
+      </menuitem>
+      <menuitem label="Agencias">
+        <icon>fa:circle-o fa-fw </icon>
+        <action>AgenciaList#method=onShow</action>
       </menuitem>
     </menu>
   </menuitem>
@@ -59,6 +59,10 @@
       <menuitem label="PHP Info">
         <icon>fa:info-circle fa-fw</icon>
         <action>SystemPHPInfoView</action>
+      </menuitem>
+      <menuitem label="PHP Modules">
+        <icon>fa:info-circle fa-fw</icon>
+        <action>SystemModulesCheckView</action>
       </menuitem>
       <menuitem label="_t{Preferences}">
         <icon>fa:cog fa-fw</icon>

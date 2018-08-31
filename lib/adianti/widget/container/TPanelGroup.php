@@ -93,6 +93,8 @@ class TPanelGroup extends TElement
                 parent::add($this->footer);
             }
         }
+        
+        return $this->body;
     }
     
     /**

@@ -161,7 +161,7 @@ class TForm implements AdiantiFormInterface
                 {
                     if (is_array($value))
                     {
-                        $value = implode(',', $value);
+                        $value = implode('|', $value);
                     }
                     
                     // if inside ajax request, then utf8_encode if isn't utf8

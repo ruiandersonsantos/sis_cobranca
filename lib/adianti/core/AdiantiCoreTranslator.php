@@ -125,6 +125,8 @@ class AdiantiCoreTranslator
         $this->messages['en'][] = 'Hash error';
         $this->messages['en'][] = 'Invalid parameter (^1) in ^2';
         $this->messages['en'][] = 'Warning';
+        $this->messages['en'][] = 'No records found';
+        $this->messages['en'][] = '^1 to ^2 from ^3 records';
         
         $this->messages['pt'][] = 'Carregando';
         $this->messages['pt'][] = 'Arquivo não encontrado';
@@ -230,6 +232,8 @@ class AdiantiCoreTranslator
         $this->messages['pt'][] = 'Erro de hash';
         $this->messages['pt'][] = 'Parâmetro (^1) inválido em ^2';
         $this->messages['pt'][] = 'Atenção';
+        $this->messages['pt'][] = 'Nenhum registro encontrado';
+        $this->messages['pt'][] = '^1 a ^2 de ^3 registros';
     }
     
     /**

@@ -19,7 +19,6 @@ use Adianti\Control\TAction;
  */
 class TColor extends TEntry implements AdiantiWidgetInterface
 {
-    private $mask;
     protected $formName;
     protected $name;
     protected $id;

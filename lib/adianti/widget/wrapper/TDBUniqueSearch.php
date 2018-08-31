@@ -55,13 +55,26 @@ class TDBUniqueSearch extends TDBMultiSearch implements AdiantiWidgetInterface
         {
             TTransaction::open($this->database);
             $model = $this->model;
-            $object = $model::find( $value );
+            
+            $pk = constant("{$model}::PRIMARYKEY");
+            
+            if ($pk === $this->key) // key is the primary key (default)
+            {
+                // use find because it uses cache
+                $object = $model::find( $value );
+            }
+            else // key is an alternative key (uses where->first)
+            {
+                $object = $model::where( $this->key, '=', $value )->first();
+            }
+            
             if ($object)
             {
                 $description = $object->render($this->mask);
                 $this->value = $value; // avoid use parent::setValue() because compat mode
                 parent::addItems( [$value => $description ] );
             }
+            
             TTransaction::close();
         }
         else
@@ -76,10 +89,20 @@ class TDBUniqueSearch extends TDBMultiSearch implements AdiantiWidgetInterface
      */
     public function getPostData()
     {
-        if (isset($_POST[$this->name]))
+        $name = str_replace(['[',']'], ['',''], $this->name);
+        
+        if (isset($_POST[$name]))
         {
-            $val = $_POST[$this->name];
-            return $val;
+            $val = $_POST[$name];
+            
+            if ($val == '') // empty option
+            {
+                return '';
+            }
+            else
+            {
+                return $val;
+            }
         }
         else
         {

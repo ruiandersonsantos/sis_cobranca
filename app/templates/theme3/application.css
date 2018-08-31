@@ -160,9 +160,13 @@ span.tdate-group-addon > i.fa-clock-o, span.tdate-group-addon > i.glyphicon-cale
 
 select.tcombo
 {
-    height: 28px;
     border: 1px solid #ccc !important;
     border-radius: 0;
+}
+
+select.tcombo:not([multiple='1'])
+{
+    height: 28px;
 }
 
 .tfield:focus
@@ -356,6 +360,26 @@ ul.navbar-top-links .open>a, ul.navbar-top-links .open>a:hover, ul.navbar-top-li
     #search-box {
         display:none !important;
     }
+    
+    ol.tbreadcrumb li 
+    {
+        padding: 0;
+    }
+    
+    .tbreadcrumb li span
+    {
+        font-size: 8pt;
+    }
+    
+    #div_breadcrumbs > ol > li:nth-child(1)
+    {
+        display: none;
+    }
+    
+    ol.tbreadcrumb li a
+    {
+        padding-right: 0.75em;
+    }
 }
 
 @media only screen and (max-width: 550px) {
@@ -431,11 +455,10 @@ table.tdatagrid_table
 
 .panel-default>.panel-heading
 {
-    border-top: 2px solid #3c8dbc;
+    border-top: 1px solid #797979;
     background: #f8f8f8;
-    height: 52px !important;
+    min-height: 52px !important;
     padding: 7px !important;
-}
 }
 
 .panel-footer
@@ -460,14 +483,9 @@ button.btn-primary
     color: white;
 }
 
-.panel > .panel-footer > .tpagenavigation
+.panel > .panel-footer > .tpagenavigation, .panel > .panel-footer > .tpagenavigation_resume
 {
     padding-top:0;
-}
-
-#div_breadcrumbs
-{
-    min-width: 640px;
 }
 
 .left-mailbox {
@@ -606,6 +624,7 @@ select.tcombo {
     padding:8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
+    overflow-x: auto;
 }
 
 .tsourcecode code
@@ -636,7 +655,51 @@ select.tcombo {
 .fc-scroller
 {
     overflow-x: visible !important;
-}.panel{
+}
+
+#envelope_messages li.header
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+#envelope_notifications li.header
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+.little-float-button {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    bottom: 40px;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 20000;
+    font-size: 100%;
+    color: white;
+    right: 10px;
+}
+
+.little-float-button.disabled {
+    background-color: gray;
+}
+
+.little-float-button:hover, .little-float-button:focus {
+    color: white;
+}
+
+.little-float-button .internal-float-button {
+    margin-top: 8px;
+}
+
+div > div.panel > .panel-body {
+    padding: 10px;
+}
+.panel{
     border-color: #ddd !important;
 }
 .panel-default[widget='bootstrapformbuilder'] > .panel-heading, #chart-box > .panel-heading{
@@ -674,7 +737,7 @@ color: #fff !important;
   padding-left: 15px !important;
 }
 
-.ui-dialog .window_modal div[widget="bootstrapformbuilder"] .panel-heading{
+.ui-dialog .window_modal div[widget="bootstrapformbuilder"] > .panel-heading{
    display: none;
 }
 

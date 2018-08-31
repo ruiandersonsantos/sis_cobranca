@@ -320,11 +320,13 @@ abstract class TRecord
                     $this->data[$key] = $data[$key];
                 }
             }
-
         }
         else
         {
-            $this->data = $data;
+            foreach ($data as $key => $value)
+            {
+                $this->data[$key] = $data[$key];
+            }
         }
     }
     
@@ -608,7 +610,7 @@ abstract class TRecord
         // creates a SELECT instruction
         $sql = new TSqlSelect;
         $sql->setEntity($this->getEntity());
-        $sql->addColumn('*');
+        $sql->addColumn($this->getAttributeList());
         
         // creates a select criteria based on the ID
         $criteria = new TCriteria;
@@ -696,7 +698,8 @@ abstract class TRecord
         // creates a SELECT instruction
         $sql = new TSqlSelect;
         $sql->setEntity($this->getEntity());
-        $sql->addColumn('*');
+        // use *, once this is called before addAttribute()s
+        $sql->addColumn($this->getAttributeList());
         
         // creates a select criteria based on the ID
         $criteria = new TCriteria;
@@ -1099,6 +1102,17 @@ abstract class TRecord
     {
         $object = new static;
         $id = $object->getFirstID();
+        
+        return self::find($id);
+    }
+    
+    /**
+     * Returns the last object
+     */
+    public static function last()
+    {
+        $object = new static;
+        $id = $object->getLastID();
         
         return self::find($id);
     }

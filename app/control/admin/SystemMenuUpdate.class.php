@@ -38,7 +38,7 @@ class SystemMenuUpdate extends TPage
             }
             
             $action = new TAction(array($this, 'onUpdateMenu'));
-            new TQuestion('Update menu overwriting existing file?', $action);
+            new TQuestion(_t('Update menu overwriting existing file?'), $action);
         }
         catch (Exception $e)
         {

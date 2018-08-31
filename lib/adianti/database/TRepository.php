@@ -524,9 +524,8 @@ class TRepository
             if ($result)
             {
                 $row = $result->fetch();
+                return $row[0];
             }
-            // returns the result
-            return $row[0];
         }
         else
         {

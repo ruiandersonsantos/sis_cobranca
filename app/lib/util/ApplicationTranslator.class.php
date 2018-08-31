@@ -250,6 +250,18 @@ class ApplicationTranslator
         $this->messages['en'][] = 'Invalid LDAP credentials';
         $this->messages['en'][] = 'Update menu overwriting existing file?';
         $this->messages['en'][] = 'Menu updated successfully';
+        $this->messages['en'][] = 'Menu path';
+        $this->messages['en'][] = 'Add to menu';
+        $this->messages['en'][] = 'Remove from menu';
+        $this->messages['en'][] = 'Item removed from menu';
+        $this->messages['en'][] = 'Item added to menu';
+        $this->messages['en'][] = 'Icon';
+        $this->messages['en'][] = 'User registration';
+        $this->messages['en'][] = 'The user registration is disabled';
+        $this->messages['en'][] = 'The password reset is disabled';
+        $this->messages['en'][] = 'Account created';
+        $this->messages['en'][] = 'Create account';
+        
         
         $this->messages['pt'][] = 'Arquivo não encontrado';
         $this->messages['pt'][] = 'Buscar';
@@ -481,6 +493,18 @@ class ApplicationTranslator
         $this->messages['pt'][] = 'Credenciais LDAP erradas';
         $this->messages['pt'][] = 'Atualizar o menu sobregravando arquivo existente?';
         $this->messages['pt'][] = 'Menu atualizado com sucesso';
+        $this->messages['pt'][] = 'Caminho menu';
+        $this->messages['pt'][] = 'Adiciona ao menu';
+        $this->messages['pt'][] = 'Remove do menu';
+        $this->messages['pt'][] = 'Item removido do menu';
+        $this->messages['pt'][] = 'Item adicionado ao menu';
+        $this->messages['pt'][] = 'Ícone';
+        $this->messages['pt'][] = 'Cadastro de usuário';
+        $this->messages['pt'][] = 'O cadastro de usuários está desabilitado';
+        $this->messages['pt'][] = 'A recuperação de senhas está desabilitada';
+        $this->messages['pt'][] = 'Conta criada';
+        $this->messages['pt'][] = 'Criar conta';
+        
         
         $this->enWords = [];
         foreach ($this->messages['en'] as $key => $value)

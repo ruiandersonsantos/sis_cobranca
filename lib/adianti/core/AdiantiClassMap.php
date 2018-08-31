@@ -28,14 +28,17 @@ class AdiantiClassMap
         $classPath['AdiantiCoreApplication']     = 'lib/adianti/core/AdiantiCoreApplication.php';
         $classPath['AdiantiCoreLoader']          = 'lib/adianti/core/AdiantiCoreLoader.php';
         $classPath['AdiantiCoreTranslator']      = 'lib/adianti/core/AdiantiCoreTranslator.php';
+        $classPath['AdiantiTemplateParser']      = 'lib/adianti/core/AdiantiTemplateParser.php';
         $classPath['TConnection']                = 'lib/adianti/database/TConnection.php';
         $classPath['TCriteria']                  = 'lib/adianti/database/TCriteria.php';
         $classPath['TExpression']                = 'lib/adianti/database/TExpression.php';
         $classPath['TFilter']                    = 'lib/adianti/database/TFilter.php';
+        $classPath['TDatabase']                  = 'lib/adianti/database/TDatabase.php';
         $classPath['TRecord']                    = 'lib/adianti/database/TRecord.php';
         $classPath['TRepository']                = 'lib/adianti/database/TRepository.php';
         $classPath['TSqlDelete']                 = 'lib/adianti/database/TSqlDelete.php';
         $classPath['TSqlInsert']                 = 'lib/adianti/database/TSqlInsert.php';
+        $classPath['TSqlMultiInsert']            = 'lib/adianti/database/TSqlMultiInsert.php';
         $classPath['TSqlSelect']                 = 'lib/adianti/database/TSqlSelect.php';
         $classPath['TSqlStatement']              = 'lib/adianti/database/TSqlStatement.php';
         $classPath['TSqlUpdate']                 = 'lib/adianti/database/TSqlUpdate.php';

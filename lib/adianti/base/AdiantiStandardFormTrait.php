@@ -82,7 +82,7 @@ trait AdiantiStandardFormTrait
      */
     public function onClear($param)
     {
-        $this->form->clear();
+        $this->form->clear( true );
     }
     
     /**

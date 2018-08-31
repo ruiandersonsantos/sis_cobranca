@@ -25,6 +25,18 @@ use Exception;
  */
 trait AdiantiStandardListTrait
 {
+    protected $filterFields;
+    protected $formFilters;
+    protected $filterTransformers;
+    protected $loaded;
+    protected $limit;
+    protected $operators;
+    protected $order;
+    protected $direction;
+    protected $criteria;
+    protected $transformCallback;
+    protected $totalRow;
+    
     use AdiantiStandardControlTrait;
     
     /**

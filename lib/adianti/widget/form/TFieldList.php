@@ -31,6 +31,7 @@ class TFieldList extends TTable
     private $clone_function;
     private $sort_action;
     private $sorting;
+    private $fields_properties;
     
     /**
      * Class Constructor
@@ -42,6 +43,7 @@ class TFieldList extends TTable
         $this->{'class'}  = 'tfieldlist';
         
         $this->fields = [];
+        $this->fields_properties = [];
         $this->body_created = false;
         $this->detail_row = 0;
         $this->sorting = false;
@@ -95,7 +97,7 @@ class TFieldList extends TTable
      * @param $label  Field Label
      * @param $object Field Object
      */
-    public function addField($label, AdiantiWidgetInterface $field)
+    public function addField($label, AdiantiWidgetInterface $field, $properties = null)
     {
         if ($field instanceof TField)
         {
@@ -109,6 +111,7 @@ class TFieldList extends TTable
             if ($name)
             {
                 $this->fields[$name] = $field;
+                $this->fields_properties[$name] = $properties;
             }
             
             if ($label instanceof TLabel)
@@ -142,7 +145,7 @@ class TFieldList extends TTable
                 $row->addCell( '' );
             }
             
-            foreach ($this->fields as $field)
+            foreach ($this->fields as $name => $field)
             {
                 if ($field instanceof THidden)
                 {
@@ -151,7 +154,15 @@ class TFieldList extends TTable
                 }
                 else
                 {
-                    $row->addCell( new TLabel( $field->getLabel() ) );
+                    $cell = $row->addCell( new TLabel( $field->getLabel() ) );
+                    
+                    if (!empty($this->fields_properties[$name]))
+                    {
+                        foreach ($this->fields_properties[$name] as $property => $value)
+                        {
+                            $cell->setProperty($property, $value);
+                        }
+                    }
                 }
             }
         }
@@ -266,6 +277,40 @@ class TFieldList extends TTable
         $row->addCell($add);
     }
     
+    /**
+     * Clear field list
+     * @param $name field list name
+     */
+    public static function clear($name)
+    {
+        TScript::create( "tfieldlist_clear('{$name}');" );
+    }
+    
+    /**
+     * Clear some field list rows
+     * @param $name     field list name
+     * @param $index    field list name
+     * @param $quantity field list name
+     */
+    public static function clearRows($name, $start = 0, $length = 0)
+    {
+        TScript::create( "tfieldlist_clear_rows('{$name}', {$start}, {$length});" );
+    }
+    
+    /**
+     * Clear some field list rows
+     * @param $name     field list name
+     * @param $index    field list name
+     * @param $quantity field list name
+     */
+    public static function addRows($name, $rows)
+    {
+        TScript::create( "tfieldlist_add_rows('{$name}', {$rows});" );
+    }
+    
+    /**
+     * Show component
+     */
     public function show()
     {
         parent::show();

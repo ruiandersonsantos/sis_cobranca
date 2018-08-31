@@ -363,15 +363,18 @@ class THtmlRenderer
      */
     public static function recursiveKeyArraySearch($needle,$haystack)
     {
-        foreach($haystack as $key=>$value)
+        if ($haystack)
         {
-            if($needle === $key)
+            foreach($haystack as $key=>$value)
             {
-                return $value;
-            }
-            else if (is_array($value) && self::recursiveKeyArraySearch($needle,$value) !== false)
-            {
-                return self::recursiveKeyArraySearch($needle,$value);
+                if($needle === $key)
+                {
+                    return $value;
+                }
+                else if (is_array($value) && self::recursiveKeyArraySearch($needle,$value) !== false)
+                {
+                    return self::recursiveKeyArraySearch($needle,$value);
+                }
             }
         }
         return false;

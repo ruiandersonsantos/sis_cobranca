@@ -8,8 +8,10 @@ class AdiantiRestServer
 {
     public static function run($request)
     {
-        $class   = isset($request['class']) ? $request['class']   : '';
-        $method  = isset($request['method']) ? $request['method'] : '';
+        $input    = json_decode(file_get_contents("php://input"));
+        $class    = isset($request['class']) ? $request['class']   : '';
+        $method   = isset($request['method']) ? $request['method'] : '';
+        $request  = array_merge($request, (array) $input);
         $response = NULL;
         
         // aqui implementar mecanismo de controle !!

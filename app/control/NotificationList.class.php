@@ -18,7 +18,11 @@ class NotificationList extends TElement
         {
             TTransaction::open('communication');
             // load the notifications to the logged user
-            $system_notifications = SystemNotification::where('checked', '=', 'N')->where('system_user_to_id', '=', TSession::getValue('userid'))->orderBy('id', 'desc')->load();
+            $system_notifications = SystemNotification::where('checked', '=', 'N')
+                                                      ->where('dt_message', '<=', date('Y-m-d 23:59:59'))
+                                                      ->where('system_user_to_id', '=', TSession::getValue('userid'))
+                                                      ->orderBy('id', 'desc')
+                                                      ->load();
             
             if ($param['theme'] == 'theme2')
             {
@@ -83,6 +87,8 @@ class NotificationList extends TElement
                 $ul_wrapper = new TElement('ul');
                 $ul_wrapper->{'class'} = 'menu';
                 $li_master->add($ul_wrapper);
+                
+                parent::add( TElement::tag('li', _t('Notifications'), ['class'=>'header']));
                 parent::add($li_master);
                 
                 foreach ($system_notifications as $system_notification)

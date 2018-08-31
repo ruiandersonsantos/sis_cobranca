@@ -52,6 +52,7 @@ class BootstrapFormBuilder implements AdiantiFormInterface
     private $name;
     private $tabFunction;
     private $tabAction;
+    private $field_sizes;
     
     /**
      * Constructor method
@@ -67,13 +68,29 @@ class BootstrapFormBuilder implements AdiantiFormInterface
         $this->padding        = 10;
         $this->name           = $name;
         $this->id             = 'bform_' . mt_rand(1000000000, 1999999999);
+        $this->field_sizes    = null;
         
         $this->column_classes = array();
-        $this->column_classes[1] = ['col-sm-12'];
-        $this->column_classes[2] = ['col-sm-2', 'col-sm-10'];
-        $this->column_classes[3] = ['col-sm-2', 'col-sm-4','col-sm-2'];
-        $this->column_classes[4] = ['col-sm-2', 'col-sm-4','col-sm-2', 'col-sm-4'];
-        $this->column_classes[6] = ['col-sm-2', 'col-sm-2','col-sm-2', 'col-sm-2', 'col-sm-2', 'col-sm-2'];
+        $this->column_classes[1]  = ['col-sm-12'];
+        $this->column_classes[2]  = ['col-sm-2', 'col-sm-10'];
+        $this->column_classes[3]  = ['col-sm-2', 'col-sm-4','col-sm-2'];
+        $this->column_classes[4]  = ['col-sm-2', 'col-sm-4','col-sm-2', 'col-sm-4'];
+        $this->column_classes[5]  = ['col-sm-2', 'col-sm-2','col-sm-2', 'col-sm-2', 'col-sm-2'];
+        $this->column_classes[6]  = ['col-sm-2', 'col-sm-2','col-sm-2', 'col-sm-2', 'col-sm-2', 'col-sm-2'];
+        $this->column_classes[7]  = ['col-sm-1', 'col-sm-1','col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1'];
+        $this->column_classes[8]  = ['col-sm-1', 'col-sm-1','col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1'];
+        $this->column_classes[9]  = ['col-sm-1', 'col-sm-1','col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1'];
+        $this->column_classes[10] = ['col-sm-1', 'col-sm-1','col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1'];
+        $this->column_classes[11] = ['col-sm-1', 'col-sm-1','col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1'];
+        $this->column_classes[12] = ['col-sm-1', 'col-sm-1','col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1', 'col-sm-1'];
+    }
+    
+    /**
+     * Set field sizes
+     */
+    public function setFieldSizes($size)
+    {
+        $this->field_sizes = $size;
     }
     
     /**
@@ -610,7 +627,7 @@ class BootstrapFormBuilder implements AdiantiFormInterface
                     
                     foreach ($slots as $slot)
                     {
-                        $label_css    = ((count($slots)>1) AND (count($slot)==1) AND $slot[0] instanceof TLabel) ? 'control-label' : '';
+                        $label_css    = ((count($slots)>1) AND (count($slot)==1) AND $slot[0] instanceof TLabel AND empty($row->layout)) ? 'control-label' : '';
                         $column_class = (!empty($row->layout) ? $row->layout[$row_counter] : $this->column_classes[$slot_counter][$row_counter]);
                         $slot_wrapper = new TElement('div');
                         $slot_wrapper->{'class'} = $column_class . ' fb-field-container '.$label_css;
@@ -622,7 +639,7 @@ class BootstrapFormBuilder implements AdiantiFormInterface
                         {
                             foreach ($slot as $field)
                             {
-                                $field_wrapper = self::wrapField($field, 'inherit');
+                                $field_wrapper = self::wrapField($field, 'inherit', $this->field_sizes);
                                 
                                 $slot_wrapper->add($field_wrapper);
                                 
@@ -637,7 +654,7 @@ class BootstrapFormBuilder implements AdiantiFormInterface
                             $field_counter = 0;
                             foreach ($slot as $field)
                             {
-                                $field_wrapper = self::wrapField($field, 'inline-block');
+                                $field_wrapper = self::wrapField($field, 'inline-block', $this->field_sizes);
                                 
                                 if ( ($field_counter+1 < count($slot)) and (!$field instanceof TDBSeekButton) ) // padding less last element
                                 {
@@ -686,7 +703,7 @@ class BootstrapFormBuilder implements AdiantiFormInterface
     /**
      * Create a field wrapper
      */
-    public static function wrapField($field, $display)
+    public static function wrapField($field, $display, $default_field_size = null)
     {
         $object = $field; // BC Compability
         $field_size = method_exists($object, 'getSize') ? $field->getSize() : null;
@@ -694,6 +711,18 @@ class BootstrapFormBuilder implements AdiantiFormInterface
         $field_wrapper = new TElement('div');
         $field_wrapper->{'class'} = 'fb-inline-field-container ' . ((($field instanceof TField) and ($has_underline)) ? 'form-line' : '');
         $field_wrapper->{'style'} = "display: {$display};vertical-align:top;" . ($display=='inline-block'?'float:left':'');
+        
+        if (!empty($default_field_size))
+        {
+            if (is_array($field_size))
+            {
+                $field_size[0] = $default_field_size;
+            }
+            else
+            {
+                $field_size = $default_field_size;
+            }
+        }
         
         if ($field instanceof TField)
         {

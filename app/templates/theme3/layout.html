@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CSP</title>
+    <title>COB</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {LIBRARIES}
@@ -52,9 +52,9 @@
         <!-- Logo -->
         <a href="index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>CSP</b></span>
+          <span class="logo-mini"><b>COB</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>CSP</b></span>
+          <span class="logo-lg"><b>COB</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -67,36 +67,7 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-            
-              {IF-BUILDER}
-              <li class="dropdown" id="asdf">
-                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-cog fa-fw"></i>
-                 </a>
-                 <ul class="dropdown-menu">
-                    <li>
-                        <a onclick="__adianti_builder_edit_page()" generator="adianti" style="cursor:pointer">
-                            <i class="fa fa-pencil-square-o blue"></i> Editar a página
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="__adianti_builder_update_page()" generator="adianti" style="cursor:pointer">
-                            <i class="fa fa-download green"></i> Atualizar a página
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="__adianti_builder_get_new_pages()" generator="adianti" style="cursor:pointer">
-                            <i class="fa fa-cloud-download orange"></i> Baixar novas páginas
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="__adianti_builder_update_menu()" generator="adianti" style="cursor:pointer">
-                            <i class="fa fa-cloud-download orange"></i> Atualizar menu
-                        </a>
-                    </li>
-                 </ul>
-              </li>
-              {/IF-BUILDER}
+              <!--{BUILDER-MENU}-->
             
               <li class="dropdown messages-menu" id="envelope_messages">
                   <!-- /.dropdown-messages -->
@@ -121,7 +92,8 @@
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header" style="height:initial">
-                    <i class="fa fa-user fa-3x" style="color:white"></i>
+                    <!-- <i class="fa fa-user fa-3x" style="color:white"></i> -->
+                    <img src="app/images/photos/{login}.jpg" onError="this.onerror=null;this.src='app/templates/{template}/img/avatar5.png';" style="border-radius:50%" alt="User" />
                     <p>
                       {username}<br>
                       <a href="index.php?class=SystemProfileView" style="color:white;font-size:12px">[Perfil]</a>
@@ -150,9 +122,11 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <i class="fa fa-user fa-2x" style="color:white"></i>
+              <!-- <i class="fa fa-user fa-2x" style="color:white"></i> -->
+              <img src="app/images/photos/{login}.jpg" onError="this.onerror=null;this.src='app/templates/{template}/img/avatar5.png';" style="border-radius:50%" alt="User" />
             </div>
             <div class="pull-left info" style="position:initial">
+            <br>
               <p>{username}</p>
             </div>
           </div>

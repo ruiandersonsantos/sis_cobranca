@@ -228,14 +228,13 @@ class TStandardSeek extends TWindow
                     $param['order'] = $pk;
                     $param['direction'] = 'asc';
                 }
-                else
-                {
-                    if ($param['order'] == 'display_field')
-                    {
-                        $param['order'] = $display_field;
-                    }
-                }
             }
+            
+            if ($param['order'] == 'display_field')
+            {
+                $param['order'] = $display_field;
+            }
+            
             $criteria->setProperties($param); // order, offset
             $criteria->setProperty('limit', $limit);
             

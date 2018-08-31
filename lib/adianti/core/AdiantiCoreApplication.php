@@ -199,7 +199,10 @@ class AdiantiCoreApplication
     {
         $url = array();
         $url['class']  = $class;
-        $url['method'] = $method;
+        if ($method)
+        {
+            $url['method'] = $method;
+        }
         unset($parameters['class']);
         unset($parameters['method']);
         $query = http_build_query($url);

@@ -43,6 +43,18 @@ class TPassword extends TField implements AdiantiWidgetInterface
     }
     
     /**
+     * Define max length
+     * @param  $length Max length
+     */
+    public function setMaxLength($length)
+    {
+        if ($length > 0)
+        {
+            $this->tag->{'maxlength'} = $length;
+        }
+    }
+    
+    /**
      * Define the javascript function to be executed when the user leaves the form field
      * @param $function Javascript function
      */

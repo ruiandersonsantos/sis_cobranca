@@ -40,7 +40,6 @@ class TExpander extends TElement
         
         $this->container = new TElement('ul');
         $this->container->{'class'} = 'dropdown-menu texpander-container';
-        $this->container->{'style'} = 'z-index: inherit';
         
         $this->container->{'aria-labelledby'} = $this->button->{'id'};
         

@@ -46,6 +46,34 @@ class TMenu extends TElement
     }
     
     /**
+     * Set menu class
+     * @param $menu_class CSS Class
+     */
+    public function setMenuClass($menu_class)
+    {
+        $this->menu_class = $menu_class;
+        $this->{'class'}  = $menu_class . " level-{$this->menu_level}";
+    }
+    
+    /**
+     * Set item class
+     * @param $item_class CSS Class
+     */
+    public function setItemClass($item_class)
+    {
+        $this->item_class = $item_class;
+    }
+    
+    /**
+     * Set item class
+     * @param $link_class CSS Class
+     */
+    public function setLinkClass($link_class)
+    {
+        $this->link_class = $link_class;
+    }
+    
+    /**
      * Add a MenuItem
      * @param $menuitem A TMenuItem Object
      */
@@ -85,6 +113,12 @@ class TMenu extends TElement
                 $menu_atts = $xmlElement->menu->attributes();
                 $menu_class = !empty( $menu_atts['class'] ) ? $menu_atts['class']: $this->menu_class;
                 $menu = new TMenu($xmlElement-> menu-> menuitem, $permission_callback, $this->menu_level +1, $menu_class, $this->item_class, $this->link_class);
+
+                foreach (parent::getProperties() as $property => $value)
+                {
+                    $menu->setProperty($property, $value);
+                }
+
                 $menuItem->setMenu($menu);
                 if ($this->item_class)
                 {
@@ -125,7 +159,7 @@ class TMenu extends TElement
      * Shows the widget at the screen
      */
     public function show()
-    {    
+    {
         if ($this->items)
         {
             foreach ($this->items as $item)
