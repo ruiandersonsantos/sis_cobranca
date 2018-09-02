@@ -24,7 +24,7 @@ class I_BancoService{
         catch(Exception $e)
         {    
             
-            new TMessage('error',$e->getMessage());
+            throw new Exception("Problemas carregando dados dos bancos do ERP! ".$e->getMessage());
         }
        
     }

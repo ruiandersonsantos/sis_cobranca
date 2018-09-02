@@ -20,7 +20,7 @@ class I_ParcelaService{
         catch(Exception $e)
         {    
             
-            new TMessage('error',$e->getMessage());
+            throw new Exception("Problemas carregando dados das parcelas do ERP! ".$e->getMessage());
         }
        
     }

@@ -133,7 +133,11 @@ class ITitulo extends TRecord
                     
                    
                     
-                   $obj->store();
+                    // Só atualiza se ainda não tiver sido carregado
+                    if($obj->importado == 0)
+                    {
+                       $obj->store();
+                    }
                     
                                   
                  }

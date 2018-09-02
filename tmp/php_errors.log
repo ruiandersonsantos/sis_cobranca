@@ -5,3 +5,18 @@
 [29-Aug-2018 22:04:35 America/Sao_Paulo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\app\control\admin\SystemDatabaseExplorer.class.php on line 234
 [29-Aug-2018 22:04:37 America/Sao_Paulo] PHP Notice:  Undefined index: QUERY_STRING in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\core\AdiantiTemplateParser.php on line 56
 [29-Aug-2018 22:04:37 America/Sao_Paulo] PHP Notice:  Undefined index: QUERY_STRING in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\core\AdiantiTemplateParser.php on line 56
+[02-Sep-2018 17:45:17 America/Sao_Paulo] PHP Notice:  Undefined offset: 4 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:32:33 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:32:33 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:32:33 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:32:33 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:32:33 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:32:33 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 120
+[02-Sep-2018 18:33:00 America/Sao_Paulo] PHP Notice:  Undefined index: QUERY_STRING in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\core\AdiantiTemplateParser.php on line 56
+[02-Sep-2018 18:33:01 America/Sao_Paulo] PHP Notice:  Undefined index: QUERY_STRING in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\core\AdiantiTemplateParser.php on line 56
+[02-Sep-2018 18:33:38 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:33:38 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:33:38 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:33:38 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:33:38 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 102
+[02-Sep-2018 18:33:38 America/Sao_Paulo] PHP Notice:  Undefined offset: -1 in C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\lib\adianti\database\TTransaction.php on line 120

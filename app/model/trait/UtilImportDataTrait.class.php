@@ -146,6 +146,37 @@ trait UtilImportDataTrait
        
     }
     
+    public static function getObjetcChildByChave($coluna,$chave)
+    {    
+        try
+        {
+            TTransaction::open(self::$database);
+             
+            $criteria = new TCriteria;
+            $criteria->add(new TFilter($coluna, '=', $chave));
+           
+            $classe = get_class();
+            
+            $objs =  $classe::getObjects( $criteria );
+            
+            TTransaction::close();
+            
+            foreach($objs as $obj)
+            {
+                return $obj;
+            } 
+            
+        }
+        catch(Exception $e)
+        {
+            TTransaction::rollback();
+                                  
+            throw new Exception("Problemas carregando dados do Parent! ".$e->getMessage());
+           
+        }
+       
+    }
+    
     public static function setObjetcFlagImported($object)
     {    
         try

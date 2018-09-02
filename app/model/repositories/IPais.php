@@ -87,6 +87,7 @@ class IPais extends TRecord
 	{    
 	    if($objects)
     	{   
+    	     TTransaction::open(self::$database);
     	     foreach($objects as $object) 
              { 
               
@@ -106,17 +107,20 @@ class IPais extends TRecord
                 $objPais->ultima_atualizacao = date('Y-m-d H:i:s');
                 $objPais->qt_atualizacoes = $objPais->qt_atualizacoes + 1;
                 
-                TTransaction::open(self::$database);
-                
-                $objPais->store();
-                
-                TTransaction::close();
-                $ObjLog->quantidade_registro = count($objects);
-                $ObjLog->fim = date('Y-m-d H:i:s');
-                $ObjLog->ocorrencia = 'SUCESSO';
                 
                 
-             }   
+                // Só atualiza se ainda não tiver sido carregado
+                if($objPais->importado == 0)
+                {
+                   $objPais->store();
+                }
+                
+             }
+             TTransaction::close();
+             $ObjLog->quantidade_registro = count($objects);
+             $ObjLog->fim = date('Y-m-d H:i:s');
+             $ObjLog->ocorrencia = 'SUCESSO';
+                   
     		
     	}
            

@@ -1,0 +1,24 @@
+Inicio da importacao ---------------------------------------- 02-09-2018 18:31:27
+Importando agencias. 02-09-2018 18:31:27
+Importando Bancos.02-09-2018 18:31:35
+Importando cidades.02-09-2018 18:31:43
+Importando clientes.02-09-2018 18:31:47
+Importando contas bancarias.02-09-2018 18:32:00
+Importando estados.02-09-2018 18:32:13
+Importando paises.02-09-2018 18:32:15
+Importando parcelas.02-09-2018 18:32:16
+Importando titulos.02-09-2018 18:32:50
+Fim da importacao ---------------------------------------- 02-09-2018 18:33:42
+Tempo de processamento --------------------------------- 00 Horas, 2 Minutos e 15 Segundos
+Inicio da importacao ---------------------------------------- 02-09-2018 18:35:03
+Importando agencias. 02-09-2018 18:35:03
+Importando Bancos.02-09-2018 18:35:10
+Importando cidades.02-09-2018 18:35:15
+Importando clientes.02-09-2018 18:35:20
+Importando contas bancarias.02-09-2018 18:35:43
+Importando estados.02-09-2018 18:35:54
+Importando paises.02-09-2018 18:35:56
+Importando parcelas.02-09-2018 18:35:57
+Importando titulos.02-09-2018 18:36:31
+Fim da importacao ---------------------------------------- 02-09-2018 18:37:03
+Tempo de processamento --------------------------------- 00 Horas, 2 Minutos e 0 Segundos

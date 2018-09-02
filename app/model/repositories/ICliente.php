@@ -37,6 +37,7 @@ class ICliente extends TRecord
         parent::addAttribute('data_hora_criacao');
         parent::addAttribute('ultima_atualizacao');
         parent::addAttribute('qt_atualizacoes');
+        parent::addAttribute('importado');
     }
     
     
@@ -175,7 +176,11 @@ class ICliente extends TRecord
                     
                    
                     
-                   $obj->store();
+                   // Só atualiza se ainda não tiver sido carregado
+                   if($obj->importado == 0)
+                   {
+                       $obj->store();
+                   }
                                    
                  }
                  

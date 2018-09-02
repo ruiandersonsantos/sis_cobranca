@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu>
   <menuitem label="Cadastros Iniciais">
-    <icon>fa:android fa-fw </icon>
+    <icon>fa:android </icon>
     <menu>
       <menuitem label="Paises">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>PaisList#method=onShow</action>
+        <icon>fa:circle-o</icon>
+        <action>PaisList</action>
       </menuitem>
       <menuitem label="Estados">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>EstadoList#method=onShow</action>
+        <icon>fa:circle-o</icon>
+        <action>EstadoList</action>
       </menuitem>
       <menuitem label="Contas">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>ContaList#method=onShow</action>
+        <icon>fa:circle-o</icon>
+        <action>ContaList</action>
       </menuitem>
       <menuitem label="Cidades">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>CidadeList#method=onShow</action>
+        <icon>fa:circle-o</icon>
+        <action>CidadeList</action>
       </menuitem>
       <menuitem label="Bancos">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>BancoList#method=onShow</action>
+        <icon>fa:circle-o</icon>
+        <action>BancoList</action>
       </menuitem>
       <menuitem label="Agencias">
-        <icon>fa:circle-o fa-fw </icon>
-        <action>AgenciaList#method=onShow</action>
+        <icon>fa:circle-o</icon>
+        <action>AgenciaList</action>
+      </menuitem>
+      <menuitem label="Clientes">
+        <icon>fa:circle-o</icon>
+        <action>ClienteList</action>
       </menuitem>
     </menu>
   </menuitem>
@@ -59,10 +63,6 @@
       <menuitem label="PHP Info">
         <icon>fa:info-circle fa-fw</icon>
         <action>SystemPHPInfoView</action>
-      </menuitem>
-      <menuitem label="PHP Modules">
-        <icon>fa:info-circle fa-fw</icon>
-        <action>SystemModulesCheckView</action>
       </menuitem>
       <menuitem label="_t{Preferences}">
         <icon>fa:cog fa-fw</icon>
@@ -113,22 +113,6 @@
       <menuitem label="_t{PHP Log}">
         <icon>fa:exclamation-triangle fa-fw</icon>
         <action>SystemPHPErrorLogView</action>
-      </menuitem>
-    </menu>
-  </menuitem>
-  <menuitem label="Common pages">
-    <menu>
-      <menuitem label="Common page 1">
-        <icon/>
-        <action>CommonPage</action>
-      </menuitem>
-      <menuitem label="Common page 2">
-        <icon/>
-        <action>CommonPage</action>
-      </menuitem>
-      <menuitem label="Common page 3">
-        <icon/>
-        <action>CommonPage</action>
       </menuitem>
     </menu>
   </menuitem>

@@ -20,8 +20,7 @@ class I_PaisService{
         }
         catch(Exception $e)
         {
-            TTransaction::rollback();
-            new TMessage('error',$e->getMessage());
+            throw new Exception("Problemas carregando dados dos paises do ERP! ".$e->getMessage());
         }
        
     }

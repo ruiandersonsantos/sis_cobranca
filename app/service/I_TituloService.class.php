@@ -20,7 +20,7 @@ class I_TituloService{
         catch(Exception $e)
         {    
             
-            new TMessage('error',$e->getMessage());
+            throw new Exception("Problemas carregando dados dos titulos do ERP! ".$e->getMessage());
         }
        
     }

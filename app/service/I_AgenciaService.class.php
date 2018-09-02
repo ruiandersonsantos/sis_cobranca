@@ -24,7 +24,7 @@ class I_AgenciaService{
         }
         catch(Exception $e)
         {    
-           new TMessage('error',$e->getMessage());
+            throw new Exception("Problemas carregando dados das agencias do ERP! ".$e->getMessage());
         }
        
     }

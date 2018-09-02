@@ -3,48 +3,157 @@
 class ImportService{
 
     public static function importDados()
-    {    
+    {   
+    
+        $fp = fopen("C:\Users\user\OneDrive\CURSO_ADIANTI_FRAMEWORKS\Projetos\cobranca\app\service\log_importacao.txt", "a");
+         
         $hora_inicio = new DateTime(date('d-m-Y H:i:s'));
         
-        echo "Inicio da importacao ---------------------------------------- ". date('d-m-Y H:i:s'). "\n";
+        $texto = "Inicio da importacao ---------------------------------------- ". date('d-m-Y H:i:s'). "\n";
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
         
-        echo "Importando agencias. ". date('d-m-Y H:i:s'). "\n";
-        I_AgenciaService::importAgencia();
+        $texto = "Importando agencias. ". date('d-m-Y H:i:s'). "\n";
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
+        try
+        { 
+            I_AgenciaService::importAgencia();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        }
+        
+        $texto = "Importando Bancos.". date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
+        try
+        { 
+           I_BancoService::importBancos();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        } 
+        
+        
+        $texto = "Importando cidades." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
+        try
+        { 
+            I_CidadeService::importCidades();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        } 
        
-        echo "Importando Bancos.". date('d-m-Y H:i:s'). "\n";
-        I_BancoService::importBancos();
         
-        echo "Importando cidades." . date('d-m-Y H:i:s'). "\n";
-        I_CidadeService::importCidades();
+        $texto = "Importando clientes." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
         
-        echo "Importando clientes." . date('d-m-Y H:i:s'). "\n";
-        I_ClienteService::importClientes();
+        try
+        { 
+            I_ClienteService::importClientes();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        } 
         
-        echo "Importando contas bancarias." . date('d-m-Y H:i:s'). "\n";
-        I_ContaService::importContas();
         
-        echo "Importando estados." . date('d-m-Y H:i:s'). "\n";
-        I_EstadoService::importEstados();
+        $texto = "Importando contas bancarias." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
         
-        echo "Importando paises." . date('d-m-Y H:i:s'). "\n";
-        I_PaisService::importPaises();
+        try
+        { 
+           I_ContaService::importContas();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        }
         
-        echo "Importando parcelas." . date('d-m-Y H:i:s'). "\n";
-        I_ParcelaService::importParcelas();
         
-        echo "Importando titulos." . date('d-m-Y H:i:s'). "\n";
-        I_TituloService::importTitulos();
+        $texto = "Importando estados." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
         
-        echo "Fim da importacao ---------------------------------------- ". date('d-m-Y H:i:s'). "\n";
+        try
+        { 
+            I_EstadoService::importEstados();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        }
+       
         
+        $texto = "Importando paises." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
+        try
+        { 
+            I_PaisService::importPaises();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        }
+        
+        
+        $texto = "Importando parcelas." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
+        try
+        { 
+            I_ParcelaService::importParcelas();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        }
+        
+        
+        $texto = "Importando titulos." . date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
+        try
+        { 
+            I_TituloService::importTitulos();
+        }
+        catch(Exception $e)
+        {
+            $escreve = fwrite($fp, $e->getMessage(). date('d-m-Y H:i:s'). "\n");        
+        }
+        
+        
+        $texto = "Fim da importacao ---------------------------------------- ". date('d-m-Y H:i:s'). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+                
         $hora_fim = new DateTime( date('d-m-Y H:i:s'));
         
         
         
         $diferenca = $hora_inicio->diff($hora_fim);
         
-        echo "Tempo de processamento --------------------------------- ". $diferenca->format( '%H Horas, %i Minutos e %s Segundos' ). "\n";
+        $texto = "Tempo de processamento --------------------------------- ". $diferenca->format( '%H Horas, %i Minutos e %s Segundos' ). "\n";      
+        echo $texto;
+        $escreve = fwrite($fp, $texto);
+        
        
+        fclose($fp);
     }
 
 }

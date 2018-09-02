@@ -140,8 +140,13 @@ class IAgencia extends TRecord
                     $obj->qt_atualizacoes = $obj->qt_atualizacoes + 1;
                     
                    
-                    
-                   $obj->store();
+                   // Só atualiza se ainda não tiver sido carregado
+                   if($obj->importado == 0)
+                   {
+                       $obj->store();
+                   }
+                   
+                   
                   
                     
                  }

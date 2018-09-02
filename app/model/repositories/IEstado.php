@@ -88,6 +88,7 @@ class IEstado extends TRecord
     	    
             if($objects)
         	{   
+        	     TTransaction::open(self::$database);
         	     foreach($objects as $object) 
                  { 
                   
@@ -109,18 +110,21 @@ class IEstado extends TRecord
                     $obj->ultima_atualizacao = date('Y-m-d H:i:s');
                     $obj->qt_atualizacoes = $obj->qt_atualizacoes + 1;
                     
-                    TTransaction::open(self::$database);
                     
-                    $obj->store();
                     
-                    TTransaction::close(); // close the transaction
-                    
-                     $ObjLog->quantidade_registro = count($objects);
-                     $ObjLog->fim = date('Y-m-d H:i:s');
-                     $ObjLog->ocorrencia = 'SUCESSO';
+                    // Só atualiza se ainda não tiver sido carregado
+                    if($obj->importado == 0)
+                    {
+                       $obj->store();
+                    }
                    
                     
-                 }   
+                 }
+                 TTransaction::close(); // close the transaction
+                    
+                 $ObjLog->quantidade_registro = count($objects);
+                 $ObjLog->fim = date('Y-m-d H:i:s');
+                 $ObjLog->ocorrencia = 'SUCESSO';   
         		
         	}    
                 

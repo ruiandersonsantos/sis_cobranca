@@ -11,6 +11,7 @@ class LoadService{
         $ibancos     = IBanco::getObjetcNoImported();
         $iagencias   = IAgencia::getObjetcNoImported();
         $icontas     = IConta::getObjetcNoImported();
+        $iclientes     = ICliente::getObjetcNoImported();
         
         // Carregando paises --------------------------------------------------------------
         if($ipaise)
@@ -259,6 +260,55 @@ class LoadService{
             
             TTransaction::close();
         }
-        // Carregando bancos --------------------------------------------------------------
+        // Carregando contas --------------------------------------------------------------
+        
+        // Carregando clientes --------------------------------------------------------------
+        if($iclientes)
+        {
+            TTransaction::open('bd_cobranca');
+            
+            foreach($iclientes as $icliente)
+            { 
+                $cliente = new Cliente();
+                $cliente->chave_origem = $icliente->chave_origem;
+                $cliente->codigo = $icliente->codigo;
+                $cliente->razao = $icliente->razao;
+                $cliente->nome_fantasia = $icliente->nome_fantasia;
+                $cliente->documento = $icliente->documento;
+                $cliente->ultima_atualizacao = date('Y-m-d H:i:s');
+                $cliente->qt_atualizacoes = $icliente->qt_atualizacoes;
+                
+                
+                
+                $icliente->importado = 1;
+            
+                try
+                {
+                   $cliente->store();
+                   
+                   
+                   $cidade = ICliente::getObjetcChildByChave('chave_municipio',$icliente->chave_municipio);
+                   
+                   $endereco = new Endereco();
+                   
+                   $endereco->set_cliente($cliente);
+                   $endereco->set_cidade($cidade);
+                   
+                   
+                                   
+                   $icliente->store();  
+                }
+                catch (Exception $e) // in case of exception
+                {
+                    new TMessage('error', $e->getMessage()); // shows the exception error message
+                    TTransaction::rollback(); // undo all pending operations
+                }
+        
+            }
+            
+            TTransaction::close();        
+        
+        }
+        // Carregando paises --------------------------------------------------------------
     }
 } 

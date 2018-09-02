@@ -20,7 +20,7 @@ class I_ClienteService{
         }
         catch(Exception $e)
         {    
-            new TMessage('error',$e->getMessage());
+            throw new Exception("Problemas carregando dados dos clientes do ERP! ".$e->getMessage());
         }
        
     }
