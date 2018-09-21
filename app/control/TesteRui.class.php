@@ -21,7 +21,7 @@ class TesteRui extends TPage
     function __construct()
     {
         parent::__construct();
-        //Teste
+        //Teste com nova ferramenta
         // creates the form
         $this->form = new BootstrapFormBuilder('form_customer');
         $this->form->setFormTitle('Customer');

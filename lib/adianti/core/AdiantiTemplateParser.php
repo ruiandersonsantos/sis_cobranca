@@ -53,7 +53,7 @@ class AdiantiTemplateParser
         $content   = str_replace('{username}',  TSession::getValue('username'), $content);
         $content   = str_replace('{usermail}',  TSession::getValue('usermail'), $content);
         $content   = str_replace('{frontpage}', TSession::getValue('frontpage'), $content);
-        $content   = str_replace('{query_string}', $_SERVER["QUERY_STRING"], $content);
+        //$content   = str_replace('{query_string}', $_SERVER["QUERY_STRING"], $content);
         
         $css       = TPage::getLoadedCSS();
         $js        = TPage::getLoadedJS();
